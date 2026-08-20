@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- RECORD_AUDIO 喂 Visualizer 的 FFT 回调、READ_MEDIA_AUDIO 喂应用内歌单，都是运行时
+         权限，由 HomeVolume() 启动时用 ActivityResultContracts.RequestMultiplePermissions()
+         主动申请（见 HomeVolume.kt 的 permissionLauncher）。maxSdkVersion=32 那条是给
+         READ_MEDIA_AUDIO 之前的旧系统兜底的。 -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <application
+        android:name=".platform.SpatialApplication"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_spatial_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_spatial_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SpaceVinylTheme"
+        tools:targetApi="31"
+        android:localeConfig="@xml/locales_config">
+
+        <activity
+            android:name=".platform.LaunchActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SpaceVinylTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Volumetric DefaultWindowContainer Configuration -->
+
+            <!-- The unique name/id of a WindowContainer -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.id"
+                android:value="YourVolumetricWindowContainer" />
+
+            <!-- Form/style of the WindowContainer
+                "0": Form.Automatic, a system default setting, set to Form.Planar currently (default)
+                "1": Form.Planar, a form where the WindowContainer behaves like a normal plane with default depth
+                "2": Form.Volumetric, a form where the WindowContainer behaves like a volume allowing custom depth
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.style"
+                android:value="2" />
+
+            <!-- Default size of the Volumetric WindowContainer
+                 "[width]x[height]x[depth]", uses dp as the unit unless specified otherwise
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.defaultsize"
+                android:value="960x960x960" />
+
+            <!-- Unit of default size for the WindowContainer
+                 "dp" — uses density-independent pixels (default)
+                 "meters" — uses meters as the unit
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.defaultsize.unit"
+                android:value="dp" />
+
+            <!-- Resize type of the WindowContainer
+                 "0": ContainerResizeType.Automatic, a system default setting, set to ContainerResizeType.ContentMinSize currently (default)
+                 "1": ContainerResizeType.ContentMinSize, constrains that WindowContainer's size cannot be smaller than root view's minSize
+                 "2": ContainerResizeType.ContentSize, constrains that WindowContainer's size cannot be smaller than root view's minSize and cannot be larger than root view's maxSize
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.resizetype"
+                android:value="0" />
+
+            <!-- Resize restriction of the WindowContainer
+                 "0": ContainerResizeRestriction.NonUniformResizable, the WindowContainer can be resized freely along any axis (default)
+                 "1": ContainerResizeRestriction.UniformResizable, the WindowContainer can only be resized uniformly, maintaining its aspect ratio
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.resizerestriction"
+                android:value="1" />
+
+            <!-- Scale type of the WindowContainer
+                 "0": WorldScale.Automatic, a system default setting, set to WorldScale.Dynamic currently (default)
+                 "1": WorldScale.Dynamic, dynamic scale, the window stays comfortably legible and interactive at any distance by scaling up as it moves away and scaling down as it moves closer, creating the illusion of a consistent size
+                 "2": WorldScale.Fixed, fixed scale, the window maintains a consistent scale but appears smaller as it moves farther along the z-axis, mimicking how objects in the real world look smaller with distance
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.worldscaletype"
+                android:value="2" />
+
+            <!-- Caption bar type of the WindowContainer
+                 "0": CaptionBarType.Default, the caption bar is always visible (default)
+                 "1": CaptionBarType.AutomaticHide, the caption bar hides  ally after 3 seconds of inactivity
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.captionbar"
+                android:value="0" />
+
+            <!-- Material background of the WindowContainer
+                 "0": false, no material background
+                 "1": true, uses Material.Regular as the background (default)
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.materialbackground"
+                android:value="0" />
+
+            <!-- Alignment mode of the Volumetric WindowContainer
+                 "0": VolumeAlignment.Gravity, the side faces remain aligned with gravity (default)
+                 "1": VolumeAlignment.Tilted, the front face always points toward the user, which may cause the container to tilt
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.volumealignment"
+                android:value="0" />
+
+            <!-- Base panel type of the Volumetric WindowContainer
+                 "0": VolumeBasePanelType.Default, the base panel of the volumetric WindowContainer is visible (default)
+                 "1": VolumeBasePanelType.None, the base panel of the volumetric WindowContainer is hidden
+             -->
+            <meta-data
+                android:name="pico.spatial.windowcontainer.volumebasepanel"
+                android:value="0" />
+
+        </activity>
+
+        <meta-data android:name="icon.3d.list" android:resource="@array/icon_3d_list" />
+        <meta-data android:name="icon.sdf.list" android:resource="@array/icon_sdf_list" />
+    </application>
+
+</manifest>
