@@ -1,0 +1,43 @@
+app:
+  id: "7705999245605748770"
+  name: "悦动音乐测试"
+  slogan: "把黑胶唱机搬进空间计算世界，真实频谱驱动黄铜光柱，在你身边随节奏律动。"
+  description: |
+    悦动音乐测试是一款运行在 PICO 空间计算设备上的空间音乐可视化应用。体积窗口中悬浮着一台黄铜质感的 3D 黑胶唱机：播放本机音乐时，唱片以 33⅓ 转每分钟匀速旋转，唱机周围 32 根黄铜频谱柱随真实音频 FFT 频谱实时律动，64 个悬浮峰值块标记各频段的瞬间能量，冷暖金属光泽随音乐在你身边流动。
+
+    主要特性：
+
+    · 空间频谱可视化：200° 弧形黄铜柱环搭配悬浮峰值块，能量驱动青铜、黄铜到暖白的金属渐变；
+
+    · 真实音频驱动：基于系统 Visualizer 的 FFT 数据，柱高与峰值跟随本机音乐实时变化，暂停时画面冻结而非归零；
+
+    · 玻璃质感空间控制面板：曲目信息、黄铜进度条、播放暂停与切歌按键集成在悬浮面板上，俯视即可操作；
+
+    · 内置空间歌单：读取本机音频文件，独立歌单面板浮在控制面板前方，随时切换曲目；
+
+    · 经典唱机美学：12 吋黑胶唱片造型、指数缓动起停、温暖黄铜配色，兼具复古质感与空间计算的沉浸感。
+  tags: [ "影音娱乐" ]
+  category: "application"
+  icon: "release-assets/icon.jpg"
+  landscape: "release-assets/landscape.jpg"
+  detail_images:
+    - "release-assets/detail-1.jpg"
+    - "release-assets/detail-2.jpg"
+    - "release-assets/detail-3.jpg"
+    - "release-assets/detail-4.jpg"
+    - "release-assets/detail-5.jpg"
+  videos: []
+version:
+  name: "1.0"
+  notes: "首个版本上线：空间黑胶唱机与实时 FFT 频谱可视化，32 根黄铜频谱柱与 64 个峰值块随音乐律动，支持空间控制面板播放控制与本机歌单切换。"
+build:
+  repo_url: "https://github.com/come2see/SpaceVinyl-test"
+  repo_visibility: "public"
+  tech_stack: "android_spatial"
+  ai_tool: "Trae CLI"
+  ai_model: "doubao-seed"
+  features:
+    - hand_tracking
+    - mixed_reality
+    - controller_support
+  teammates: []
