@@ -1,0 +1,14 @@
+
+# Internal Trae skills and release state
+trae/
+.vibelab/
+# Android build artifacts
+*.iml
+.gradle/
+local.properties
+.idea/
+build/
+captures/
+.externalNativeBuild
+.cxx
+.DS_Store

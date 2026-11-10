@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "tech.illusion.spacevinyl"
+        applicationId = "com.come2see.spacevinyltest"
         minSdk = 35
         targetSdk = 35
         versionCode = 1
